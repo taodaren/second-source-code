@@ -1,6 +1,6 @@
 # 第二行代码
 
-## 第1章 开始启程——你的第一行Android代码
+## 第1章 开始启程——[你的第一行Android代码](https://github.com/taodaren/second-source-code/blob/master/chapter01/Chapter%201%20Summary.md)
 
 ## 第2章 先从看得到的入手——探究活动
 
