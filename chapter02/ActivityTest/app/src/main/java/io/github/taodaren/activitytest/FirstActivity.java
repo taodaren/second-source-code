@@ -40,8 +40,14 @@ public class FirstActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 //调用系统拨号界面
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:10011"));
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse("tel:10011"));
+//                startActivity(intent);
+
+                //传递数据给下一个Activity
+                String data = "taodaren is a handsome guy.";
+                Intent intent = new Intent(FirstActivity.this, ThirdActivity.class);
+                intent.putExtra("taodaren", data);
                 startActivity(intent);
             }
         });
