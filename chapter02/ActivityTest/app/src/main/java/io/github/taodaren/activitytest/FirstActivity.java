@@ -45,10 +45,14 @@ public class FirstActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 //传递数据给下一个Activity
-                String data = "taodaren is a handsome guy.";
-                Intent intent = new Intent(FirstActivity.this, ThirdActivity.class);
-                intent.putExtra("taodaren", data);
-                startActivity(intent);
+//                String data = "taodaren is a handsome guy.";
+//                Intent intent = new Intent(FirstActivity.this, ThirdActivity.class);
+//                intent.putExtra("taodaren", data);
+//                startActivity(intent);
+
+                //返回数据给上一个活动
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
