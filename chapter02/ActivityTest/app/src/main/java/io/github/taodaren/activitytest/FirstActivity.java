@@ -1,6 +1,7 @@
 package io.github.taodaren.activitytest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -29,8 +30,18 @@ public class FirstActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 //活动跳转-隐式
-                Intent intent = new Intent("io.taodaren.github.activitytest.ACTION_START");
-                intent.addCategory("io.taodaren.github.activitytest.TAODAREN_CATEGORY");//添加 category
+//                Intent intent = new Intent("io.taodaren.github.activitytest.ACTION_START");
+//                intent.addCategory("io.taodaren.github.activitytest.TAODAREN_CATEGORY");//添加 category
+//                startActivity(intent);
+
+                //更多隐式用法
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse("https://taodaren.github.io/"));
+//                startActivity(intent);
+
+                //调用系统拨号界面
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:10011"));
                 startActivity(intent);
             }
         });
