@@ -18,7 +18,9 @@ public class FirstActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FirstActivity.this, "按钮被点击！", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(FirstActivity.this, "按钮被点击！", Toast.LENGTH_SHORT).show();
+                //销毁当前活动
+                finish();
             }
         });
     }
