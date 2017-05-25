@@ -24,8 +24,13 @@ public class FirstActivity extends AppCompatActivity {
                 //销毁当前活动
 //                finish();
 
-                //活动跳转
-                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                //活动跳转-显式
+//                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+//                startActivity(intent);
+
+                //活动跳转-隐式
+                Intent intent = new Intent("io.taodaren.github.activitytest.ACTION_START");
+                intent.addCategory("io.taodaren.github.activitytest.TAODAREN_CATEGORY");//添加 category
                 startActivity(intent);
             }
         });
