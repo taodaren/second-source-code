@@ -1,5 +1,6 @@
 package io.github.taodaren.activitytest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -19,8 +20,13 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(FirstActivity.this, "按钮被点击！", Toast.LENGTH_SHORT).show();
+
                 //销毁当前活动
-                finish();
+//                finish();
+
+                //活动跳转
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivity(intent);
             }
         });
     }
