@@ -9,11 +9,29 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "taodaren";
 
+    /**
+     * 保证活动被回收之前一定被调用
+     * 用于解决活动被回收时临时数据得不到保存问题
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String tempData = "Something you just typed";
+        outState.putString("data_key", tempData);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_main);
+
+        //恢复保存的数据
+        if (savedInstanceState != null) {
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d(TAG, "savedInstanceState: " + tempData);
+        }
+
         findViewById(R.id.btn_normal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
