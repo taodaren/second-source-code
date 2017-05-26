@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,5 +78,25 @@ public class FirstActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+
+    /**
+     * 用于回掉返回的数据
+     *
+     * @param requestCode 启动活动时传入的请求码
+     * @param resultCode  返回数据时传入处理结果
+     * @param data        携带返回数据 intent
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("taodaren", "onActivityResult: FirstActivity===" + returnedData);
+                }
+                break;
+            default:
+        }
     }
 }

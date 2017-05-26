@@ -1,9 +1,8 @@
 package io.github.taodaren.activitytest;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class SecondActivity extends AppCompatActivity {
@@ -24,22 +23,9 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1:
-                if (requestCode == RESULT_OK) {
-                    String returnedData = data.getStringExtra("data_return");
-                    Log.d("taodaren", "onActivityResult: FirstActivity==" + returnedData);
-                }
-                break;
-            default:
-        }
-    }
-
-    @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("data_return", "Hello FirstActivity");
+        intent.putExtra("data_return", "Hello FirstActivity ! I'm Back.");
         setResult(RESULT_OK, intent);
         finish();
     }
