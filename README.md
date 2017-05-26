@@ -1,6 +1,10 @@
-# 第二行代码
+# 目 录
 
-## 第1章 开始启程——[你的第一行Android代码](https://github.com/taodaren/second-source-code/blob/master/chapter01/Chapter%201%20Summary.md)
+## 第1章 开始启程——你的第一行Android代码
+
+- [Activity 基本用法](https://github.com/taodaren/second-source-code/blob/master/chapter02/Activity%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
+
+- [Intent 传递](https://github.com/taodaren/second-source-code/blob/master/chapter02/Intent%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
 
 ## 第2章 先从看得到的入手——探究活动
 
