@@ -2,7 +2,10 @@ package io.github.taodaren.listviewtest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initData();
         initView();
+        setItemClickListener();
+    }
+
+    private void setItemClickListener() {
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AndroidVersionHistory versionHistory = versionList.get(position);
+                Toast.makeText(MainActivity.this, versionHistory.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initView() {
