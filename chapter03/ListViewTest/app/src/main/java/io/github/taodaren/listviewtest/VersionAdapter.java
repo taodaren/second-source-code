@@ -33,16 +33,21 @@ public class VersionAdapter extends ArrayAdapter<AndroidVersionHistory> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+        View view;
         //获取当前项的 version 实例
         AndroidVersionHistory version = getItem(position);
 
-        /* 加载传入的布局
-         * inflate() 参数作用
-         * @param resourceId 要加载的布局文件 id
-         * @param parent     给加载好的布局再添加一个父布局
-         * @param false      让在父布局声明的 layout 生效，但不为这个 View 添加父布局 */
-        View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        if (convertView == null) {
+            /** 加载传入的布局
+             * inflate() 参数作用
+             * @param resourceId 要加载的布局文件 id
+             * @param parent     给加载好的布局再添加一个父布局
+             * @param false      让在父布局声明的 layout 生效，但不为这个 View 添加父布局
+             */
+            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        } else {
+            view = convertView;
+        }
 
         ImageView imageVersion = (ImageView) view.findViewById(R.id.image_version);
         TextView textVersion = (TextView) view.findViewById(R.id.text_version);
