@@ -34,6 +34,7 @@ public class VersionAdapter extends ArrayAdapter<AndroidVersionHistory> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view;
+        ViewHolder viewHolder;
         //获取当前项的 version 实例
         AndroidVersionHistory version = getItem(position);
 
@@ -45,14 +46,23 @@ public class VersionAdapter extends ArrayAdapter<AndroidVersionHistory> {
              * @param false      让在父布局声明的 layout 生效，但不为这个 View 添加父布局
              */
             view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.imageVersion = (ImageView) view.findViewById(R.id.image_version);
+            viewHolder.textVersion = (TextView) view.findViewById(R.id.text_version);
+            //将 ViewHolder 存储在 View 中
+            view.setTag(viewHolder);
         } else {
             view = convertView;
+            //重新获取 ViewHolder
+            viewHolder = (ViewHolder) view.getTag();
         }
-
-        ImageView imageVersion = (ImageView) view.findViewById(R.id.image_version);
-        TextView textVersion = (TextView) view.findViewById(R.id.text_version);
-        imageVersion.setImageResource(version.getImgId());
-        textVersion.setText(version.getName());
+        viewHolder.imageVersion.setImageResource(version.getImgId());
+        viewHolder.textVersion.setText(version.getName());
         return view;
+    }
+
+    class ViewHolder {
+        ImageView imageVersion;
+        TextView textVersion;
     }
 }
