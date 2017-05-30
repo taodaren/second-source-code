@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerAdapter adapter = new RecyclerAdapter(beanList);
         recyclerView.setAdapter(adapter);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             beanList.add(gingerbread);
             RecyclerBean honeycomb = new RecyclerBean("Honeycomb", android.R.drawable.sym_def_app_icon);
             beanList.add(honeycomb);
-            RecyclerBean ice = new RecyclerBean("Ice Cream Sandwich", android.R.drawable.sym_def_app_icon);
+            RecyclerBean ice = new RecyclerBean("Ice Cream", android.R.drawable.sym_def_app_icon);
             beanList.add(ice);
             RecyclerBean jelly = new RecyclerBean("Jelly Bean", android.R.drawable.sym_def_app_icon);
             beanList.add(jelly);
