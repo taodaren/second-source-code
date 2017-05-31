@@ -6,6 +6,7 @@
     tools:context="io.github.taodaren.fragmenttest.RightFragment">
 
     <TextView
+        android:id="@+id/right_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"

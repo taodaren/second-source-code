@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         replaceFragment(new RightFragment());
+
+        //在活动中调用碎片里的方法
+        RightFragment rightFragment = (RightFragment) getSupportFragmentManager().findFragmentById(R.id.right_fragment);
     }
 
     private void replaceFragment(Fragment fragment) {
