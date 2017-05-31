@@ -23,7 +23,7 @@ public class NewsContentActivity extends AppCompatActivity {
         //获取传入的新闻内容
         String newsContent = getIntent().getStringExtra("news_content");
         //Fragment 与 Activity 通信
-        NewsContentFragment newsContentFragment = (NewsContentFragment) getSupportFragmentManager().findFragmentById(R.id.news_content_fragment);
+        NewsContentFragment newsContentFragment = (NewsContentFragment) getSupportFragmentManager().findFragmentById(R.id.news_content_fragment_activity);
         //刷新 NewsContentFragment 界面
         newsContentFragment.refresh(newsTitle, newsContent);
     }

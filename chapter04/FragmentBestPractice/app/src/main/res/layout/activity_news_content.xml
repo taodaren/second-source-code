@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/news_content_fragment"
+        android:id="@+id/news_content_fragment_activity"
         android:name="io.github.taodaren.fragmentbestpractice.NewsContentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
