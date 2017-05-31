@@ -2,4 +2,5 @@
     <string name="app_name">FragmentTest</string>
 
     <string name="hello_blank_fragment">This is right fragment</string>
+    <string name="hello_blank_fragment_another">This is another right fragment</string>
 </resources>
