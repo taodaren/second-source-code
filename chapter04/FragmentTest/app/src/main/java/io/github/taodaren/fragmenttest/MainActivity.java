@@ -18,25 +18,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.button:
-                        replaceFragment(new AnotherRightFragment());
+//                        replaceFragment(new AnotherRightFragment());
                         break;
                     default:
                         break;
                 }
             }
         });
-        replaceFragment(new RightFragment());
+//        replaceFragment(new RightFragment());
 
         //在活动中调用碎片里的方法
         RightFragment rightFragment = (RightFragment) getSupportFragmentManager().findFragmentById(R.id.right_fragment);
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.right_layout, fragment);
-        //将一个事务添加到返回栈中
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+//    private void replaceFragment(Fragment fragment) {
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.right_layout, fragment);
+//        //将一个事务添加到返回栈中
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 }
