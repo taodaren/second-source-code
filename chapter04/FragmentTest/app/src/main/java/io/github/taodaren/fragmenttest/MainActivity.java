@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.right_layout, fragment);
+        //将一个事务添加到返回栈中
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
