@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(netWorkChangeReceiver);
     }
 
+    /**
+     * 发送自定义广播（标准广播）
+     * @param view
+     */
+    public void onMyBroadcast(View view) {
+        Intent intent = new Intent("io.github.taodaren.broadcasttest.My_BROADCAST");
+        sendBroadcast(intent);
+    }
+
     class NetWorkChangeReceiver extends BroadcastReceiver {
 
         @Override
@@ -45,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "网络可用", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "网络不可用", Toast.LENGTH_SHORT).show();
-            } 
+            }
         }
     }
 }

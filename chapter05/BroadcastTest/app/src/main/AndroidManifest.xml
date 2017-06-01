@@ -21,11 +21,11 @@
         </activity>
 
         <receiver
-            android:name=".BootCompleteReceiver"
+            android:name=".MyBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="io.github.taodaren.broadcasttest.My_BROADCAST" />
             </intent-filter>
         </receiver>
     </application>
