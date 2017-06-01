@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -35,7 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, "网络发生变化", Toast.LENGTH_SHORT).show();
+            //网络连接管理
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            //判断是否有网络
+            if (networkInfo != null && networkInfo.isAvailable()) {
+                Toast.makeText(context, "网络可用", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "网络不可用", Toast.LENGTH_SHORT).show();
+            } 
         }
     }
 }
