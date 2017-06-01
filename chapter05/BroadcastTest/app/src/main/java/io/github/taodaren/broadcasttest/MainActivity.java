@@ -40,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onMyBroadcast(View view) {
         Intent intent = new Intent("io.github.taodaren.broadcasttest.MY_BROADCAST");
-        sendBroadcast(intent);
+        //发送标准广播
+//        sendBroadcast(intent);
+        //发送有序广播
+        sendOrderedBroadcast(intent, null);
     }
 
     class NetWorkChangeReceiver extends BroadcastReceiver {
