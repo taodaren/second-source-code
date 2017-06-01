@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onMyBroadcast(View view) {
-        Intent intent = new Intent("io.github.taodaren.broadcasttest.My_BROADCAST");
+        Intent intent = new Intent("io.github.taodaren.broadcasttest.MY_BROADCAST");
         sendBroadcast(intent);
     }
 

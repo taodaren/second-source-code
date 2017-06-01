@@ -25,7 +25,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.github.taodaren.broadcasttest.My_BROADCAST" />
+                <action android:name="io.github.taodaren.broadcasttest.MY_BROADCAST" />
             </intent-filter>
         </receiver>
     </application>
