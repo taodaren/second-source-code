@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -16,6 +18,8 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.xml.parsers.SAXParserFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -52,12 +56,27 @@ public class MainActivity extends AppCompatActivity {
                     String responseData = response.body().string();
 //                    showResponse(responseData);
                     //解析服务器返回的数据
-                    parseXMLWithPull(responseData);
+                    parseXMLWithPull(responseData);//Pull 解析
+                    parseXMLWithSAX(responseData);//SAX 解析
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void parseXMLWithSAX(String xmlData) {
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            XMLReader xmlReader = factory.newSAXParser().getXMLReader();
+            ContentHandler handler = new ContentHandler();
+            //将 ContentHandler 的实例设置到 XMLReader 中
+            xmlReader.setContentHandler(handler);
+            //开始执行解析
+            xmlReader.parse(new InputSource(new StringReader(xmlData)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
