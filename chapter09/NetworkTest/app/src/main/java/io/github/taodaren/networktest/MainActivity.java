@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xmlpull.v1.XmlPullParser;
@@ -50,19 +53,39 @@ public class MainActivity extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
 //                        .url("https://taodaren.github.io/")
-                            .url("http://localhost:8080/taodaren/get_data.xml")
+//                            .url("http://localhost:8080/taodaren/get_data.xml")
+                            .url("http://127.0.0.1:8080/taodaren/get_data.json")
                             .build();
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
 //                    showResponse(responseData);
                     //解析服务器返回的数据
-                    parseXMLWithPull(responseData);//Pull 解析
-                    parseXMLWithSAX(responseData);//SAX 解析
+//                    parseXMLWithPull(responseData);//Pull 解析
+//                    parseXMLWithSAX(responseData);//SAX 解析
+                    //解析 JSON 数据
+                    parseJSONWithJSONObject(responseData);//使用 JSONObject
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void parseJSONWithJSONObject(String jsonData) {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonData);
+            for (int i=0;i<jsonArray.length();i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String id = jsonObject.getString("id");
+                String name = jsonObject.getString("name");
+                String version = jsonObject.getString("version");
+                Log.e("taodaren", "parseJSONWithJSONObject: id is " + id);
+                Log.e("taodaren", "parseJSONWithJSONObject: name is " + name);
+                Log.e("taodaren", "parseJSONWithJSONObject: version is " + version);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void parseXMLWithSAX(String xmlData) {
