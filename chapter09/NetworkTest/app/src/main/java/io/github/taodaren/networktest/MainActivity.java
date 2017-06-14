@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +24,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import javax.xml.parsers.SAXParserFactory;
 
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 //                    parseXMLWithSAX(responseData);//SAX 解析
                     //解析 JSON 数据
                     parseJSONWithJSONObject(responseData);//使用 JSONObject
+                    parseJSONWithGSON(responseData);//使用 GSON
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -71,10 +76,21 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    private void parseJSONWithGSON(String jsonData) {
+        Gson gson = new Gson();
+        List<AppBean> beanList = gson.fromJson(jsonData,
+                new TypeToken<List<AppBean>>() { }.getType());
+        for (AppBean appBean : beanList) {
+            Log.e("taodaren", "parseJSONWithGSON: id is " + appBean.getId());
+            Log.e("taodaren", "parseJSONWithGSON: name is " + appBean.getName());
+            Log.e("taodaren", "parseJSONWithGSON: version is " + appBean.getVersion());
+        }
+    }
+
     private void parseJSONWithJSONObject(String jsonData) {
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
-            for (int i=0;i<jsonArray.length();i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String id = jsonObject.getString("id");
                 String name = jsonObject.getString("name");
