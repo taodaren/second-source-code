@@ -28,6 +28,8 @@ import java.util.List;
 
 import javax.xml.parsers.SAXParserFactory;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -44,7 +46,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                sendRequestWithHttpURLConnection();
-                sendRequestWithOkHttp();
+//                sendRequestWithOkHttp();
+                sendRequestWithHttpUtil();
+            }
+        });
+    }
+
+    private void sendRequestWithHttpUtil() {
+        String address = "https://taodaren.github.io/";
+        //使用 HttpURLConnection
+        HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                //在这里根据返回内容执行具体的逻辑
+            }
+
+            @Override
+            public void onError(Exception e) {
+                //在这里对异常情况进行处理
+            }
+        });
+        //使用 OkHttp
+        HttpUtil.sendOkHttpRequest(address, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //在这里对异常情况进行处理
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //得到服务器返回的具体内容
+                String responseData = response.body().string();
             }
         });
     }
@@ -79,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
     private void parseJSONWithGSON(String jsonData) {
         Gson gson = new Gson();
         List<AppBean> beanList = gson.fromJson(jsonData,
-                new TypeToken<List<AppBean>>() { }.getType());
+                new TypeToken<List<AppBean>>() {
+                }.getType());
         for (AppBean appBean : beanList) {
             Log.e("taodaren", "parseJSONWithGSON: id is " + appBean.getId());
             Log.e("taodaren", "parseJSONWithGSON: name is " + appBean.getName());
