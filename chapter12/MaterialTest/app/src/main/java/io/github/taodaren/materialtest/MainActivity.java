@@ -1,6 +1,8 @@
 package io.github.taodaren.materialtest;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -29,6 +31,20 @@ public class MainActivity extends AppCompatActivity {
             //设置（自定义）导航按钮图标
             actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
         }
+
+        //获取 NavigationView 实例
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        //设置默认选中项
+        navView.setCheckedItem(R.id.nav_call);
+        //设置监听器
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //将滑动菜单关闭
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
     }
 
     @Override
