@@ -22,18 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //设置 ToolBar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setToolBar();
         //设置滑动菜单
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            //显示 ToolBar 左侧导航按钮
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            //设置（自定义）导航按钮图标
-            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
-        }
+        setDrawerLayout();
+        setNavigationView();
+        //设置悬浮控件
+        setFloatingActionButton();
+    }
 
+    private void setFloatingActionButton() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "FAB 被点击", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setNavigationView() {
         //获取 NavigationView 实例
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         //设置默认选中项
@@ -47,15 +54,22 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
-        //设置悬浮控件
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "FAB 被点击", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void setDrawerLayout() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            //显示 ToolBar 左侧导航按钮
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            //设置（自定义）导航按钮图标
+            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
+        }
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
