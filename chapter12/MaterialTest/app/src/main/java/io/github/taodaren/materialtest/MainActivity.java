@@ -9,14 +9,29 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
+    private FruitBean[] fruits = {
+            new FruitBean("Apple", R.drawable.apple), new FruitBean("Banana", R.drawable.banana),
+            new FruitBean("Cherry", R.drawable.cherry), new FruitBean("Grape", R.drawable.grape),
+            new FruitBean("Mango", R.drawable.mango), new FruitBean("Origin", R.drawable.orange),
+            new FruitBean("Pear", R.drawable.pear), new FruitBean("Pineapple", R.drawable.pineapple),
+            new FruitBean("Strawberry", R.drawable.strawberry), new FruitBean("Watermelon", R.drawable.watermelon)
+    };
+    private List<FruitBean> fruitList = new ArrayList<>();
+    private FruitAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +44,27 @@ public class MainActivity extends AppCompatActivity {
         setNavigationView();
         //设置悬浮控件
         setFloatingActionButton();
+
+        initData();
+        initView();
+    }
+
+    private void initData() {
+        //清空数据
+        fruitList.clear();
+        for (int i = 0; i < 50; i++) {
+            Random random = new Random();
+            int index = random.nextInt(fruits.length);
+            fruitList.add(fruits[index]);
+        }
+    }
+
+    private void initView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new FruitAdapter(fruitList);
+        recyclerView.setAdapter(adapter);
     }
 
     private void setFloatingActionButton() {
