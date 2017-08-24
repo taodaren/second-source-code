@@ -2,6 +2,8 @@ package io.github.taodaren.notificationtest;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_send_notice:
+                //延迟 intent
+                Intent intent = new Intent(this, NotificationActivity.class);
+                PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
                 //获取 NotificationManager 实例
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 //兼容所有版本，设置通知内容
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setSmallIcon(R.mipmap.ic_launcher)
                         //通知大图标
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                        //延迟启动（为通知添加点击功能）
+                        .setContentIntent(pi)
                         .build();
                 //显示通知
                 manager.notify(1, notification);
