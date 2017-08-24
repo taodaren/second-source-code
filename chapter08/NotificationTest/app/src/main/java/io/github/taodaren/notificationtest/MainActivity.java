@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                         //延迟启动（为通知添加点击功能）
                         .setContentIntent(pi)
+                        //通知自动取消
+//                        .setAutoCancel(true)
                         .build();
                 //显示通知
                 manager.notify(1, notification);
