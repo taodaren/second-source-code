@@ -5,9 +5,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,8 +44,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                         //延迟启动（为通知添加点击功能）
                         .setContentIntent(pi)
-                        //通知自动取消
+//                        //通知自动取消
 //                        .setAutoCancel(true)
+//                        //设置音频
+//                        .setSound(Uri.fromFile(new File("/system/media/audio/ringtones/MI.ogg")))
+//                        //设置震动
+//                        .setVibrate(new long[]{0, 1000, 1000, 1000})
+//                        //设置呼吸灯
+//                        .setLights(Color.BLUE, 1000, 1000)
+                        //设置通知默认效果
+                        .setDefaults(NotificationCompat.DEFAULT_ALL)
                         .build();
                 //显示通知
                 manager.notify(1, notification);
